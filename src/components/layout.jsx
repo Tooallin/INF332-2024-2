@@ -11,7 +11,7 @@ const Layout = ()  => {
 		<BrowserRouter>
 			<div className='layout'>
 				<h1 className='layout__title'>
-					Plataforma Unificada de Ayudantías <span className="layout__pau">PAU</span>
+					Plataforma Unificada de Ayudantías
 				</h1>
 				<NavBar />
 				<div className='layout__page'>
