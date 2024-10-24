@@ -1,10 +1,12 @@
 import React from "react";
 
+import Tabla from "../components/table";
+
 export const CoursesPage = () => {
 	return (
 		<div className="courses-page">
 			<p>
-				A continuamos te mostramos todos los cursos que dictas actualmente
+				<Tabla />
 			</p>
 		</div>
 	)
