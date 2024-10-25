@@ -1,0 +1,226 @@
+import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// Datos de postulantes
+const applicantsData = [
+    {
+        name: 'Alessando Cintolesi',
+        role: '202173558-3',
+        nota: 80,
+        semestre: '2024/1',
+        laboratorio: true,
+        catedras: false,
+        corrector: false,
+        options: ['Laboratorio'],
+    },
+    {
+        name: 'Ignacio Muñoz',
+        role: '202173589-4',
+        nota: 78,
+        semestre: '2024/1',
+        laboratorio: true,
+        catedras: true,
+        corrector: false,
+        options: ['Laboratorio', 'Cátedras'],
+    },
+    {
+        name: 'Maximiliano Bardi',
+        role: '202173589-2',
+        nota: 76,
+        semestre: '2024/1',
+        laboratorio: true,
+        catedras: false,
+        corrector: false,
+        options: ['Laboratorio'],
+    },
+    {
+        name: 'Francisca Figueroa',
+        role: '202173534-1',
+        nota: 92,
+        semestre: '2023/2',
+        laboratorio: true,
+        catedras: true,
+        corrector: true,
+        options: ['Laboratorio', 'Cátedras', 'Corrector'],
+    },
+];
+
+const App = () => {
+    const [acceptedHelpers, setAcceptedHelpers] = useState([]);
+    const [modalData, setModalData] = useState({ show: false, applicant: null });
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedOptions, setSelectedOptions] = useState([]); // Estado para las opciones seleccionadas
+
+    const showOptions = (applicant) => {
+        setModalData({ show: true, applicant });
+        setSelectedOptions([]); // Resetear opciones seleccionadas al abrir el modal
+    };
+
+    const handleOptionChange = (option) => {
+        setSelectedOptions((prevOptions) => {
+            if (prevOptions.includes(option)) {
+                return prevOptions.filter((o) => o !== option);
+            } else {
+                return [...prevOptions, option];
+            }
+        });
+    };
+
+    const confirmSelection = () => {
+        const { applicant } = modalData;
+
+        // Mostrar un mensaje de confirmación
+        const isConfirmed = window.confirm(`¿Estás seguro de que deseas aceptar a ${applicant.name} con las opciones seleccionadas: ${selectedOptions.join(', ')}?`);
+        
+        if (isConfirmed) {
+            // Añade el ayudante aceptado y actualiza su estado
+            const newHelper = { ...applicant, selectedOptions }; // Guardar las opciones seleccionadas
+            setAcceptedHelpers([...acceptedHelpers, newHelper]);
+            
+            // Actualizar opciones del postulante al ser aceptado
+            const updatedApplicants = applicantsData.map((item) => {
+                if (item.name === applicant.name) {
+                    // Filtrar las opciones que no se han seleccionado
+                    const updatedOptions = item.options.filter(option => !selectedOptions.includes(option));
+                    return { ...item, options: updatedOptions };
+                }
+                return item;
+            });
+
+            setModalData({ show: false, applicant: null });
+        } else {
+            // Si no está confirmado, simplemente cerrar el modal
+            setModalData({ show: false, applicant: null });
+        }
+    };
+
+    const removeAccepted = (name) => {
+        setAcceptedHelpers(acceptedHelpers.filter(helper => helper.name !== name));
+    };
+
+    // Función para manejar el cambio en la barra de búsqueda
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
+
+    // Filtrar postulantes que no han sido aceptados
+    const availableApplicants = applicantsData.filter(applicant => 
+        !acceptedHelpers.some(helper => helper.name === applicant.name) && 
+        applicant.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    return (
+        <div>
+            <header style={{ backgroundColor: '#002244', height: '110px' }}>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Logo_UTFSM.png" style={{ width: '150px', height: '100px', margin: '10px', float: 'left' }} alt="Logo" />
+                <h1>
+                    <span style={{ color: '#E5E5E5', marginLeft: '400px', fontSize: '50px' }}>INTELIGENCIA </span>
+                    <span style={{ color: '#D8BC5E', fontSize: '50px' }}>ARTIFICIAL</span>
+                </h1>
+            </header>
+
+            <div className="container mt-4">
+                <h2>Postulantes</h2>
+                <input
+                    type="text"
+                    placeholder="Buscar postulante..."
+                    className="form-control mb-3"
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                />
+                <table className="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th style={{ backgroundColor: '#002244', color: 'white' }}>Nombre</th>
+                            <th style={{ backgroundColor: '#002244', color: 'white' }}>Rol</th>
+                            <th style={{ backgroundColor: '#002244', color: 'white' }}>Nota</th>
+                            <th style={{ backgroundColor: '#002244', color: 'white' }}>Semestre cursado</th>
+                            <th style={{ backgroundColor: '#002244', color: 'white' }}>Laboratorio</th>
+                            <th style={{ backgroundColor: '#002244', color: 'white' }}>Cátedras</th>
+                            <th style={{ backgroundColor: '#002244', color: 'white' }}>Corrector</th>
+                            <th style={{ backgroundColor: '#002244', color: 'white' }}></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {availableApplicants.map((applicant, index) => (
+                            <tr key={index}>
+                                <td>{applicant.name}</td>
+                                <td>{applicant.role}</td>
+                                <td>{applicant.nota}</td>
+                                <td>{applicant.semestre}</td>
+                                <td>{applicant.laboratorio ? 'Sí' : 'No'}</td>
+                                <td>{applicant.catedras ? 'Sí' : 'No'}</td>
+                                <td>{applicant.corrector ? 'Sí' : 'No'}</td>
+                                <td>
+                                    <button className="btn btn-warning" onClick={() => showOptions(applicant)}>Aceptar</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+
+                <h2>Ayudantes Aceptados</h2>
+                <table className="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th style={{ backgroundColor: '#002244', color: 'white' }}>Nombre</th>
+                            <th style={{ backgroundColor: '#002244', color: 'white' }}>Rol</th>
+                            <th style={{ backgroundColor: '#002244', color: 'white' }}>Asignación</th>
+                            <th style={{ backgroundColor: '#002244', color: 'white' }}></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {acceptedHelpers.map((helper, index) => (
+                            <tr key={index}>
+                                <td>{helper.name}</td>
+                                <td>{helper.role}</td>
+                                <td>{helper.selectedOptions.length > 0 ? helper.selectedOptions.join(', ') : 'Ninguna'}</td>
+                                <td>
+                                    <button className="btn btn-danger" onClick={() => removeAccepted(helper.name)}>Eliminar</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+
+                {/* Mostrar las opciones seleccionadas */}
+            </div>
+            {modalData.show && (
+                <div className="modal show" style={{ display: 'block' }}>
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title">Seleccionar Opciones</h5>
+                                <button type="button" className="btn-close" onClick={() => setModalData({ show: false, applicant: null })}></button>
+                            </div>
+                            <div className="modal-body">
+                                <form id="acceptanceForm">
+                                    {modalData.applicant.options.map((option, index) => (
+                                        <div className="form-check" key={index}>
+                                            <input
+                                                className="form-check-input"
+                                                type="checkbox"
+                                                id={`${option}Option`}
+                                                checked={selectedOptions.includes(option)}
+                                                onChange={() => handleOptionChange(option)} // Manejar el cambio de selección
+                                            />
+                                            <label className="form-check-label" htmlFor={`${option}Option`}>
+                                                {option}
+                                            </label>
+                                        </div>
+                                    ))}
+                                </form>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-danger" onClick={() => setModalData({ show: false, applicant: null })}>Cerrar</button>
+                                <button type="button" className="btn btn-warning" onClick={confirmSelection}>Aceptar</button> {/* Llamar a confirmSelection aquí */}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
+
+export default App;
