@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import HomePage from '../pages/home_page';
 import CoursesPage from '../pages/courses_page';
+import CursoBastianPage from '../pages/CursoBastianPage';
 
 import NavBar from './nav_bar';
 
@@ -18,6 +19,7 @@ const Layout = ()  => {
 					<Routes>
 						<Route path="/" element={<HomePage />} />
 						<Route path="/cursos" element={<CoursesPage />}/>
+						<Route path="/cursos_bastian" element={<CursoBastianPage />} />
 					</Routes>
 				</div>
 			</div>
