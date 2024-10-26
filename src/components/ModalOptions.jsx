@@ -28,10 +28,10 @@ const ModalOptions = ({ show, options, selectedOptions, onClose, onConfirm, onOp
                         ))}
                     </div>
                     <div className="modal-footer">
-                        <button className="btn btn-secondary" onClick={onClose}>
+                        <button className="btn btn-danger" onClick={onClose}>
                             Cancelar
                         </button>
-                        <button className="btn btn-primary" onClick={onConfirm}>
+                        <button className="btn btn-warning" onClick={onConfirm}>
                             Aceptar
                         </button>
                     </div>
