@@ -5,10 +5,10 @@ const AcceptedHelpersTable = ({ acceptedHelpers, onRemove }) => (
     <table className="table table-striped table-bordered table-hover">
         <thead>
             <tr>
-                <th>Nombre</th>
-                <th>Rol</th>
-                <th>Asignación</th>
-                <th></th>
+            <th style={{ backgroundColor: '#002244', color: 'white' }}>Nombre</th>
+            <th style={{ backgroundColor: '#002244', color: 'white' }}>Rol</th>
+            <th style={{ backgroundColor: '#002244', color: 'white' }}>Asignación</th>
+            <th style={{ backgroundColor: '#002244', color: 'white' }}></th>
             </tr>
         </thead>
         <tbody>
