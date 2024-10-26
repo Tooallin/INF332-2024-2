@@ -21,6 +21,12 @@ export const NavBar = () => {
 			>
 				Cursos
 			</NavLink>
+			<NavLink
+				className={navLinkClass}
+				to="/cursos_bastian"
+			>
+				cursos_bastian
+			</NavLink>
 		</nav>
 	)
 }
