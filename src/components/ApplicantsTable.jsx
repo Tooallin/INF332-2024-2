@@ -24,14 +24,14 @@ const ApplicantsTable = ({ applicants, onAccept }) => { // Cambia aquí
             <table className="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Rol</th>
-                        <th>Nota</th>
-                        <th>Semestre</th>
-                        <th>Laboratorio</th>
-                        <th>Cátedras</th>
-                        <th>Corrector</th>
-                        <th>Acciones</th>
+                    <th style={{ backgroundColor: '#002244', color: 'white' }}>Nombre</th>
+                            <th style={{ backgroundColor: '#002244', color: 'white' }}>Rol</th>
+                            <th style={{ backgroundColor: '#002244', color: 'white' }}>Nota</th>
+                            <th style={{ backgroundColor: '#002244', color: 'white' }}>Semestre cursado</th>
+                            <th style={{ backgroundColor: '#002244', color: 'white' }}>Laboratorio</th>
+                            <th style={{ backgroundColor: '#002244', color: 'white' }}>Cátedras</th>
+                            <th style={{ backgroundColor: '#002244', color: 'white' }}>Corrector</th>
+                            <th style={{ backgroundColor: '#002244', color: 'white' }}></th>
                     </tr>
                 </thead>
                 <tbody>
