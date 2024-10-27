@@ -12,7 +12,7 @@ const Layout = ()  => {
 		<BrowserRouter>
 			<div className='layout'>
 				<h1 className='layout__title'>
-				<img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Logo_UTFSM.png" style={{ width: '120px', height: '74px',  float: 'left' }} alt="Logo" />
+				<img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Logo_UTFSM.png" style={{ width: '150px', height: '88px',  float: 'left' }} alt="Logo" />
 					<span style={{ color: '#ffc107', marginLeft: '20px', fontSize: '45px' }}>P</span>
                     <span style={{ color: '#E5E5E5',marginLeft:'0PX', fontSize: '45px' }}>lataforma</span>
 					<span style={{ color: '#D8BC5E', marginLeft: '20px', fontSize: '45px' }}></span>
@@ -21,6 +21,7 @@ const Layout = ()  => {
                     <span style={{ color: '#E5E5E5',marginLeft:'0PX', fontSize: '45px' }}>yudantías</span>
 					<span style={{ color: '#ffc107', marginLeft: '20px', fontSize: '45px' }}>U</span>
                     <span style={{ color: '#E5E5E5',marginLeft:'0PX', fontSize: '45px' }}>nificada</span>
+                    <span style={{ color: '#E5E5E5',marginLeft:'0PX', fontSize: '60px' }}></span>
 				</h1>
 				<NavBar />
 				<div className='layout__page'>
