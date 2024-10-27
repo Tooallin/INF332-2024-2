@@ -4,7 +4,7 @@ import Tabla from "../components/table";
 
 export const CoursesPage = () => {
 	return (
-		<div className="courses-page">
+		<div className="container mt-4">
 			<p>
 				<Tabla />
 			</p>
