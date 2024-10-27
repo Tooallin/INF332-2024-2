@@ -7,7 +7,7 @@ function SeleccionarPostulante() {
 
   return (
     <div>
-      <button onClick={handleClick}>SeleccionarPostulante</button>
+      <button className="btn btn-warning"  onClick={handleClick}>SeleccionarPostulante</button>
     </div>
   );
 }
