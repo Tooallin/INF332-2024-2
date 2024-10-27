@@ -3,8 +3,6 @@ import SeleccionarPostulante from './button';
 
 function Tabla() {
 	return (
-function Tabla() {
-	return (
             <table className="table table-striped table-bordered table">
 			<thead className='table__head'>
 				<tr>
