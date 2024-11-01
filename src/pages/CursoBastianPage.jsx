@@ -1,8 +1,10 @@
 // src/pages/CursoBastianPage.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ApplicantsTable from '../components/ApplicantsTable';
 import AcceptedHelpersTable from '../components/AcceptedHelpersTable';
 import ModalOptions from '../components/ModalOptions';
+import { useAyudantes   } from '../components/AyudantesContext'; // Asegúrate de importar el contexto
+
 
 const applicantsData = [
     {
@@ -11,7 +13,7 @@ const applicantsData = [
         nota: 80,
         semestre: '2024/1',
         laboratorio: true,
-        catedras: false,
+        catedra: false,
         corrector: false,
         options: ['Laboratorio'],
     },
@@ -21,9 +23,9 @@ const applicantsData = [
         nota: 78,
         semestre: '2024/1',
         laboratorio: true,
-        catedras: true,
+        catedra: true,
         corrector: false,
-        options: ['Laboratorio', 'Cátedras'],
+        options: ['Laboratorio', 'Catedra'],
     },
     {
         name: 'Maximiliano Bardi',
@@ -31,7 +33,7 @@ const applicantsData = [
         nota: 76,
         semestre: '2024/1',
         laboratorio: true,
-        catedras: false,
+        catedra: false,
         corrector: false,
         options: ['Laboratorio'],
     },
@@ -41,82 +43,74 @@ const applicantsData = [
         nota: 92,
         semestre: '2023/2',
         laboratorio: true,
-        catedras: true,
+        catedra: true,
         corrector: true,
-        options: ['Laboratorio', 'Cátedras', 'Corrector'],
+        options: ['Laboratorio', 'Catedra', 'Corrector'],
     },
 ];
 
-const CursoBastianPage = () => {
-    const [acceptedHelpers, setAcceptedHelpers] = useState([]);
+const CursoBastianPage = ({ sigla }) => {
+
+
+    const { selectedHelpers, addHelper, removeHelper, responsibilityLimits } = useAyudantes();
+
+
     const [modalData, setModalData] = useState({ show: false, applicant: null });
-    const [selectedOptions, setSelectedOptions] = useState([]);
+    const [selectedOptions, setSelectedOptions] = useState({});
     const [applicants, setApplicants] = useState(applicantsData); // Cambia aquí
 
 
-  // Contadores para cada tipo de responsabilidad
-    const [responsibilityCount, setResponsibilityCount] = useState({
-    catedra: 0,
-    corrector: 0,
-    laboratorio: 0,
-    });
+    // Actualizar la lista de postulantes al aceptar o eliminar ayudantes
+    useEffect(() => {
+        const acceptedNames = (selectedHelpers[sigla] || []).map(helper => helper.name);
+        const updatedApplicants = applicantsData.filter(applicant => !acceptedNames.includes(applicant.name));
+        setApplicants(updatedApplicants);
+    }, [selectedHelpers, sigla]); // Dependencias para actualizar la lista
+
 
     const showOptions = (applicant) => {
         setModalData({ show: true, applicant });
-        setSelectedOptions([]);
+        setSelectedOptions({});
     };
     const handleOptionChange = (option) => {
-        setSelectedOptions((prevOptions) =>
-            prevOptions.includes(option) ? prevOptions.filter((o) => o !== option) : [...prevOptions, option]
-        );
+        setSelectedOptions((prevOptions) => ({
+            ...prevOptions,
+            [modalData.applicant.name]: prevOptions[modalData.applicant.name]?.includes(option)
+                ? prevOptions[modalData.applicant.name].filter((o) => o !== option)
+                : [...(prevOptions[modalData.applicant.name] || []), option]
+        }));
     };
     
 
    
     const confirmSelection = () => {
         const { applicant } = modalData;
-        if (selectedOptions.length === 0) {
+        const optionsForApplicant = selectedOptions[applicant.name] || [];
+        if (optionsForApplicant.length === 0) {
             alert('Por favor, selecciona al menos una opción antes de aceptar.');
             return;
         }
-        
-        const newHelper = { ...applicant, selectedOptions };
-        setAcceptedHelpers([...acceptedHelpers, newHelper]);
-
-        // Actualizar contadores según las opciones seleccionadas
-        const updatedCount = { ...responsibilityCount };
-        selectedOptions.forEach((option) => {
-            if (option === 'Cátedras') updatedCount.catedra += 1;
-            if (option === 'Corrector') updatedCount.corrector += 1;
-            if (option === 'Laboratorio') updatedCount.laboratorio += 1;
-        });
-        setResponsibilityCount(updatedCount);
-
-        // Eliminar el postulante de la lista
-        setApplicants(applicants.filter(item => item.name !== applicant.name));
-
+        addHelper(sigla, applicant, optionsForApplicant);
         setModalData({ show: false, applicant: null });
     };
 
 
   
     const removeAccepted = (helper) => {
-        // Eliminar al ayudante de la lista de aceptados
-        const updatedHelpers = acceptedHelpers.filter(item => item.name !== helper.name);
-        setAcceptedHelpers(updatedHelpers);
-
-        // Decrementar los contadores
-        const updatedCount = { ...responsibilityCount };
-        helper.selectedOptions.forEach((option) => {
-            if (option === 'Cátedras') updatedCount.catedra -= 1;
-            if (option === 'Corrector') updatedCount.corrector -= 1;
-            if (option === 'Laboratorio') updatedCount.laboratorio -= 1;
-        });
-        setResponsibilityCount(updatedCount);
-
-        // Devolver al ayudante a la lista de postulantes
-        setApplicants([...applicants, helper]);
+        removeHelper(sigla, helper);
+        
     };
+
+    const responsibilityCount = { catedra: 0, corrector: 0, laboratorio: 0 };
+    (selectedHelpers[sigla] || []).forEach((helper) => {
+        helper.selectedOptions.forEach((option) => {
+            const optionKey = option.toLowerCase(); // Convertir a minúsculas para comparación
+            if (responsibilityCount[option.toLowerCase()] !== undefined) {
+                responsibilityCount[option.toLowerCase()] += 1;
+            }
+        });
+    });
+
 
     return (
         <div className="container mt-4">
@@ -125,16 +119,16 @@ const CursoBastianPage = () => {
             <div className="d-flex flex-column align-items-center mt-4 mb-3">
                 <h2>Ayudantes Aceptados</h2>
                 <div className="d-flex gap-3 justify-content-center">
-                    <p>Cátedra: {responsibilityCount.catedra} / 2</p>
-                    <p>Corrector: {responsibilityCount.corrector} / 2</p>
-                    <p>Laboratorio: {responsibilityCount.laboratorio} / 2</p>
+                    <p>Cátedra: {responsibilityCount.catedra} / {responsibilityLimits.catedra}</p>
+                    <p>Corrector: {responsibilityCount.corrector} / {responsibilityLimits.corrector}</p>
+                    <p>Laboratorio: {responsibilityCount.laboratorio} / {responsibilityLimits.laboratorio}</p>
                 </div>
             </div>
-            <AcceptedHelpersTable acceptedHelpers={acceptedHelpers} onRemove={removeAccepted} />
+            <AcceptedHelpersTable acceptedHelpers={selectedHelpers[sigla] || []} onRemove={removeAccepted} />
             <ModalOptions
                 show={modalData.show}
                 options={modalData.applicant ? modalData.applicant.options : []}
-                selectedOptions={selectedOptions}
+                selectedOptions={selectedOptions[modalData.applicant?.name] || []}
                 onClose={() => setModalData({ show: false, applicant: null })}
                 onConfirm={confirmSelection}
                 onOptionChange={handleOptionChange}
