@@ -29,7 +29,7 @@ const ApplicantsTable = ({ applicants, onAccept }) => { // Cambia aquí
                             <th style={{ backgroundColor: '#002244', color: 'white' }}>Nota</th>
                             <th style={{ backgroundColor: '#002244', color: 'white' }}>Semestre cursado</th>
                             <th style={{ backgroundColor: '#002244', color: 'white' }}>Laboratorio</th>
-                            <th style={{ backgroundColor: '#002244', color: 'white' }}>Cátedras</th>
+                            <th style={{ backgroundColor: '#002244', color: 'white' }}>Cátedra</th>
                             <th style={{ backgroundColor: '#002244', color: 'white' }}>Corrector</th>
                             <th style={{ backgroundColor: '#002244', color: 'white' }}></th>
                     </tr>
@@ -42,7 +42,7 @@ const ApplicantsTable = ({ applicants, onAccept }) => { // Cambia aquí
                             <td>{applicant.nota}</td>
                             <td>{applicant.semestre}</td>
                             <td>{applicant.laboratorio ? 'Sí' : 'No'}</td>
-                            <td>{applicant.catedras ? 'Sí' : 'No'}</td>
+                            <td>{applicant.catedra ? 'Sí' : 'No'}</td>
                             <td>{applicant.corrector ? 'Sí' : 'No'}</td>
                             <td>
                                 <button className="btn btn-warning" onClick={() => onAccept(applicant)}>Aceptar</button>
