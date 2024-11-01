@@ -15,16 +15,17 @@ const ModalOptions = ({ show, options, selectedOptions, onClose, onConfirm, onOp
                     </div>
                     <div className="modal-body">
                         {/* Muestra el nombre del postulante */}
-                        <p>Selecciona las opciones para el postulante: <strong>{applicantName}</strong></p>
-                        {options.map((option) => (
+                        <p className="modal__p">Selecciona las opciones para el postulante: <strong>{applicantName}</strong></p>
+                        {options.map((option, index) => (
                             <div key={option}>
                                 <input
                                     type="checkbox"
+                                    id={`option-${index}`} // Asignar un id único para cada opción
                                     checked={selectedOptions.includes(option)}
                                     onChange={() => onOptionChange(option)}
                                 />
-                                <label>{option}</label>
-                            </div>
+                                <label htmlFor={`option-${index}`} className="modal__label">{option}</label> {/* Asociar el label con el checkbox */}
+                                </div>
                         ))}
                     </div>
                     <div className="modal-footer">
