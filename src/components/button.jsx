@@ -1,15 +1,24 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAyudantes  } from './AyudantesContext';
 
-function SeleccionarPostulante() {
-  const handleClick = () => {
-    window.open("https://www.example.com", "_blank", "width=800,height=600");
-  };
+
+
+const SeleccionarPostulante = ({ sigla }) => {
+    const navigate = useNavigate();
+
+    const handleButtonClick = () => {
+        navigate('/cursos_bastian'); // Cambié la ruta a '/cursobastian'
+    };
 
   return (
-    <div>
-      <button className="btn btn-warning"  onClick={handleClick}>SeleccionarPostulante</button>
-    </div>
+      <button onClick={handleButtonClick} className="btn btn-warning">
+          SeleccionarPostulante
+      </button>
   );
 }
 
+
+
 export default SeleccionarPostulante;
+
