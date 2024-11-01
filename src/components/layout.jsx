@@ -1,6 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+import { AyudantesProvider } from './AyudantesContext';
+
+
 import HomePage from '../pages/home_page';
 import CoursesPage from '../pages/courses_page';
 import CursoBastianPage from '../pages/CursoBastianPage';
@@ -25,11 +28,14 @@ const Layout = ()  => {
 				</h1>
 				<NavBar />
 				<div className='layout__page'>
+				<AyudantesProvider>
 					<Routes>
 						<Route path="/" element={<HomePage />} />
 						<Route path="/cursos" element={<CoursesPage />}/>
 						<Route path="/cursos_bastian" element={<CursoBastianPage />} />
 					</Routes>
+					</AyudantesProvider>
+
 				</div>
 			</div>
 		</BrowserRouter>
@@ -37,4 +43,6 @@ const Layout = ()  => {
 }
 
 export default Layout
+
+
 
