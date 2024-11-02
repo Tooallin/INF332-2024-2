@@ -1,18 +1,12 @@
 import React from "react";
-
-import Tabla from "../components/table";
-
-import { useAyudantes   } from '../components/AyudantesContext'; // Importa el contexto
-
+import CoursesTable from "../components/courses_table";
+import { useAyudantes   } from '../components/helpers_context'; // Importa el contexto
 
 export const CoursesPage = () => {
-    const { getResponsibilityTotal } = useAyudantes();
-
+	const { getResponsibilityTotal } = useAyudantes();
 	return (
 		<div className="container mt-4">
-			
-            <Tabla />
-			
+			<CoursesTable />	
 		</div>
 	)
 }

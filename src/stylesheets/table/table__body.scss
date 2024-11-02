@@ -1,3 +1,9 @@
 .table__body {
 	background-color: #d2cfd0;
 }
+
+.table__body tr td:last-child{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

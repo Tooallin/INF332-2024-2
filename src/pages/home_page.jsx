@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../components/footer";
 
 export const HomePage = () => {
 	return (
@@ -9,6 +10,7 @@ export const HomePage = () => {
 			<p>
 				Aqui podras gestionar los ayudantes para cada uno de tus ramos.
 			</p>
+			<Footer />
 		</>
 	)
 }

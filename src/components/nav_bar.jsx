@@ -19,13 +19,13 @@ export const NavBar = () => {
 				className={navLinkClass}
 				to="/cursos"
 			>
-				Cursos
+				Mis Cursos
 			</NavLink>
 			<NavLink
 				className={navLinkClass}
-				to="/cursos_bastian"
+				to="/perfil"
 			>
-				cursos_bastian
+				Mi Perfil
 			</NavLink>
 		</nav>
 	)
