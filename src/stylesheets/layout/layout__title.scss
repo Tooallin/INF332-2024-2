@@ -1,0 +1,28 @@
+.layout__title {
+	font-size: 24pt;
+	margin: 0;
+	padding: 20px;
+	background-color: #002A32;
+	color: white;
+
+	img {
+		max-width: 110px;
+		margin-right: 10px; // Ajusta el margen según sea necesario
+	  }
+  
+	.uppercase {
+	  font-weight: bold; // Optional: Add bold weight to uppercase letters
+	}
+  
+	.uppercase-P {
+	  color: #ffc107;
+	}
+  
+	.uppercase-A {
+	  color: #ffc107;
+	}
+  
+	.uppercase-U {
+	  color: #ffc107;
+	}
+  }

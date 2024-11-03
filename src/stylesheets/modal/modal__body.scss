@@ -1,0 +1,30 @@
+// stylesheets/model__body.scss
+
+.checkbox-large {
+    transform: scale(1.5); /* Aumenta el tamaño del checkbox */
+    margin-right: 10px; /* Añade un margen derecho */
+}
+
+.modal-body {
+    p {
+        margin-bottom: 15px; /* Espacio inferior en los párrafos */
+    }
+
+    .form-check {
+        margin: 10px 0; /* Espacio entre las opciones del checkbox */
+        
+        .form-check-input {
+            @extend .checkbox-large; /* Aplica el estilo del checkbox grande */
+        }
+    }
+}
+
+.modal__label {
+    font-size: 1.2rem; // Ajusta el tamaño según lo que necesites
+    margin-left: 0.5rem; // Agregar margen si es necesario
+}
+
+.modal__p {
+    font-size: 1.2rem; // Ajusta el tamaño según lo que necesites
+    margin-left: 0.1rem; // Agregar margen si es necesario
+}
