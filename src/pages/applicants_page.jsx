@@ -8,9 +8,10 @@ import { useAyudantes   } from '../components/helpers_context';
 
 const applicantsData = [
 	{
-		name: 'Alessando Cintolesi',
+		name: 'Alessandro Cintolesi',
 		role: '202173558-3',
 		nota: 80,
+		exp: '2 ayudantias',
 		semestre: '2024/1',
 		laboratorio: true,
 		catedra: false,
@@ -21,6 +22,7 @@ const applicantsData = [
 		name: 'Ignacio Muñoz',
 		role: '202173589-4',
 		nota: 78,
+		exp: '3 ayudantias',
 		semestre: '2024/1',
 		laboratorio: true,
 		catedra: true,
@@ -31,6 +33,7 @@ const applicantsData = [
 		name: 'Maximiliano Bardi',
 		role: '202173589-2',
 		nota: 76,
+		exp: '1 ayudantia',
 		semestre: '2024/1',
 		laboratorio: true,
 		catedra: false,
@@ -41,6 +44,7 @@ const applicantsData = [
 		name: 'Francisca Figueroa',
 		role: '202173534-1',
 		nota: 92,
+		exp: '2 ayudantias',
 		semestre: '2023/2',
 		laboratorio: true,
 		catedra: true,
