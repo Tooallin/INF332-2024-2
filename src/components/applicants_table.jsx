@@ -51,12 +51,14 @@ const ApplicantsTable = ({ applicants, onAccept }) => {
 
 	return (
 		<div>
+			<label htmlFor='search-bar' className='search-label'>
+				Búsqueda por nombre
+			</label>
 			<input
 				type="text"
-				placeholder="Buscar postulante..."
 				value={searchTerm}
 				onChange={handleSearchChange}
-				className="form-control mb-3"
+				className="search-bar mb-3"
 			/>
 			<table className="table table-striped table-bordered table-hover">
 				<thead className='table__head'>
@@ -64,6 +66,7 @@ const ApplicantsTable = ({ applicants, onAccept }) => {
 						<th onClick={() => requestSort('name')}>Nombre {renderSortIcon('name')}</th>
 						<th onClick={() => requestSort('role')}>Rol {renderSortIcon('role')}</th>
 						<th onClick={() => requestSort('nota')}>Nota {renderSortIcon('nota')}</th>
+						<th onClick={() => requestSort('exp')}>Experiencia {renderSortIcon('exp')}</th>
 						<th onClick={() => requestSort('semestre')}>Semestre cursado {renderSortIcon('semestre')}</th>
 						<th>Laboratorio</th>
 						<th>Cátedra</th>
@@ -77,6 +80,7 @@ const ApplicantsTable = ({ applicants, onAccept }) => {
 							<td>{applicant.name}</td>
 							<td>{applicant.role}</td>
 							<td>{applicant.nota}</td>
+							<td>{applicant.exp}</td>
 							<td>{applicant.semestre}</td>
 							<td>{applicant.laboratorio ? 'Sí' : 'No'}</td>
 							<td>{applicant.catedra ? 'Sí' : 'No'}</td>
