@@ -1,0 +1,38 @@
+.table {
+	table-layout: auto;
+	width: 100%; 
+}
+
+.table__head tr th {
+	background-color: #002A32;
+	color: white;
+	white-space: nowrap;
+	width: 1%;
+}
+
+.table__head tr th:last-child {
+	text-align: center;
+	white-space: nowrap;
+	width: 1%;
+}
+
+.table__body tr td:last-child {
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.search-label {
+	display: block; 
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.search-bar {
+	width: 100%;
+	padding: 10px;
+	font-size: 16px;
+	border-radius: 5px;
+	border: 1px solid #002A32;
+}
