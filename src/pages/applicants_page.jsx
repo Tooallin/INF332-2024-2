@@ -5,60 +5,12 @@ import AcceptedHelpersTable from '../components/accepted_helpers_table';
 import ModalOptions from '../components/modal_options';
 import { useAyudantes   } from '../components/helpers_context';
 
-
-const applicantsData = [
-	{
-		name: 'Alessandro Cintolesi',
-		role: '202173558-3',
-		nota: 80,
-		exp: '2 ayudantias',
-		semestre: '2024/1',
-		laboratorio: true,
-		catedra: false,
-		corrector: false,
-		options: ['Laboratorio'],
-	},
-	{
-		name: 'Ignacio Muñoz',
-		role: '202173589-4',
-		nota: 78,
-		exp: '3 ayudantias',
-		semestre: '2024/1',
-		laboratorio: true,
-		catedra: true,
-		corrector: false,
-		options: ['Laboratorio', 'Catedra'],
-	},
-	{
-		name: 'Maximiliano Bardi',
-		role: '202173589-2',
-		nota: 76,
-		exp: '1 ayudantia',
-		semestre: '2024/1',
-		laboratorio: true,
-		catedra: false,
-		corrector: false,
-		options: ['Laboratorio'],
-	},
-	{
-		name: 'Francisca Figueroa',
-		role: '202173534-1',
-		nota: 92,
-		exp: '2 ayudantias',
-		semestre: '2023/2',
-		laboratorio: true,
-		catedra: true,
-		corrector: true,
-		options: ['Laboratorio', 'Catedra', 'Corrector'],
-	},
-];
-
-const ApplicantsPage = ({ sigla }) => {
+const ApplicantsPage = ({ sigla, applicantsData, nombre }) => {
 
 	const navigate = useNavigate();
 
 	const handleBackClick = () => {
-		navigate('/cursos'); // Redirige a la página /cursos
+		navigate('/'); // Redirige a la página /cursos
 	};
 	const { selectedHelpers, addHelper, removeHelper, responsibilityLimits } = useAyudantes();
 	const [modalData, setModalData] = useState({ show: false, applicant: null });
@@ -116,7 +68,22 @@ const ApplicantsPage = ({ sigla }) => {
 			<button onClick={handleBackClick} className="normal-button mb-4 btn btn-warning">
 				Volver Atras
 			</button>
-      		   <h2 style={{ margin: '0', flexGrow: 1, textAlign: 'center' }}>Nombre del Curso o Profesor</h2>
+			<h2 style={{ 
+			margin: '0', 
+			flexGrow: 1, 
+			textAlign: 'center', 
+			color: '#FFC857', 
+			fontSize: '4em', 
+			textShadow: `
+				1px 1px 0 #000, -1px -1px 0 #000, 
+				-1px 1px 0 #000, 1px -1px 0 #000, 
+				1px 0 0 #000, -1px 0 0 #000, 
+				0 1px 0 #000, 0 -1px 0 #000
+			`
+			}}>
+			{nombre}
+			</h2>
+
     	</div>
 
 			<ApplicantsTable applicants={applicants} onAccept={showOptions} />

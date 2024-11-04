@@ -5,6 +5,7 @@ const AyudantesContext = createContext();
 export const AyudantesProvider = ({ children }) => {
 	const [selectedHelpers, setSelectedHelpers] = useState({});
 	const responsibilityLimits = { catedra: 2, corrector: 2, laboratorio: 2 };
+
 	const addHelper = (sigla, helper, selectedOptions) => {
 		const updatedHelpers = { ...selectedHelpers }
 		if (!updatedHelpers[sigla]) {
@@ -18,12 +19,14 @@ export const AyudantesProvider = ({ children }) => {
 		}
 		setSelectedHelpers(updatedHelpers);
 	};
+
 	const removeHelper = (sigla, helper) => {
 		const updatedHelpers = { ...selectedHelpers };
 		if (!updatedHelpers[sigla]) return;
 		updatedHelpers[sigla] = updatedHelpers[sigla].filter(h => h.role !== helper.role);
 		setSelectedHelpers(updatedHelpers);
 	};
+
 	const getResponsibilityTotal = (sigla) => {
 		const helpers = selectedHelpers[sigla] || [];
 		const responsibilityCount = { catedra: 0, corrector: 0, laboratorio: 0 };
@@ -38,6 +41,7 @@ export const AyudantesProvider = ({ children }) => {
 			totalPostulantes: helpers.length,
 		};
 	};
+
 	const getResponsibilityCount = (sigla, responsibility) => {
 		const helpers = selectedHelpers[sigla] || [];
 		const count = helpers.reduce((acc, helper) => {
@@ -46,6 +50,7 @@ export const AyudantesProvider = ({ children }) => {
 		}, 0);
 		return count;
 	};
+	
 	return (
 		<AyudantesContext.Provider
 			value={{

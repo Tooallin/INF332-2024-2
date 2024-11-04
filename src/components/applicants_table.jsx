@@ -82,11 +82,11 @@ const ApplicantsTable = ({ applicants, onAccept }) => {
 							<td>{applicant.nota}</td>
 							<td>{applicant.exp}</td>
 							<td>{applicant.semestre}</td>
-							<td>{applicant.laboratorio ? 'Sí' : 'No'}</td>
-							<td>{applicant.catedra ? 'Sí' : 'No'}</td>
-							<td>{applicant.corrector ? 'Sí' : 'No'}</td>
+							<td>{applicant.laboratorio ? 'Certificado' : 'No Certificado'}</td>
+							<td>{applicant.catedra ? 'Certificado' : 'No Certificado'}</td>
+							<td>{applicant.corrector ? 'Certificado' : 'No Certificado'}</td>
 							<td>
-								<button className="btn btn-warning" onClick={() => onAccept(applicant)}>Aceptar</button>
+								<button className="normal-button btn-warning" onClick={() => onAccept(applicant)}>Seleccionar Ayudante</button>
 							</td>
 						</tr>
 					))}
