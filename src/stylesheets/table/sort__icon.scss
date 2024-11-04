@@ -1,0 +1,8 @@
+.sort-icon {
+	color: gray; /* Color para los íconos inactivos */
+	margin-left: 5px;
+}
+
+.sort-icon.active {
+	color: #ffc857; /* Color para los íconos activos */
+}

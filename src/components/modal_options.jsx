@@ -8,11 +8,10 @@ const ModalOptions = ({ show, options, selectedOptions, onClose, onConfirm, onOp
 			<div className="modal-dialog">
 				<div className="modal-content">
 					<div className="modal-header">
-						<h5 className="modal-title">Confirmar Aceptación</h5>
+						<h5 className="modal-title">Confirmar Selección</h5>
 					</div>
 					<div className="modal-body">
-						{/* Muestra el nombre del postulante */}
-						<p className="modal__p">Selecciona las opciones para el postulante: <strong>{applicantName}</strong></p>
+						<p className="modal__p">Seleccione las opciones para el postulante: <strong>{applicantName}</strong></p>
 						{options.map((option, index) => (
 							<div key={option}>
 								<input
@@ -26,10 +25,10 @@ const ModalOptions = ({ show, options, selectedOptions, onClose, onConfirm, onOp
 						))}
 					</div>
 					<div className="modal-footer">
-						<button className="btn btn-danger" onClick={onClose}>
+						<button className="cancel-button" onClick={onClose}>
 							Cancelar
 						</button>
-						<button className="btn btn-warning" onClick={onConfirm}>
+						<button className="accept-button" onClick={onConfirm}>
 							Aceptar
 						</button>
 					</div>

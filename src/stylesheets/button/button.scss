@@ -1,0 +1,68 @@
+.normal-button {
+	padding: 10px;
+	border: 2px solid #002A32;
+	border-radius: 5px;
+	background-color: #FFC857;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.normal-button:hover {
+	background-color: #002A32;
+	color: white;
+}
+
+.cancel-button {
+	padding: 10px;
+	border: 2px solid black;
+	border-radius: 5px;
+	background-color: #D60019;
+	color: white;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.cancel-button:hover {
+	border: 2px solid black;
+	background-color: #72010e;
+	color: white;
+}
+
+.accept-button {
+	padding: 10px;
+	border: 2px solid black;
+	border-radius: 5px;
+	background-color: #008452;
+	color: white;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.accept-button:hover {
+	border: 2px solid black;
+	background-color: #005233;
+	color: white;
+}
+
+.goback-button {
+	padding: 10px;
+	border: 2px solid black;
+	border-radius: 5px;
+	background-color: #AABCBB;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.goback-button:hover {
+	border: 2px solid black;
+	background-color: #7f8585;
+	color: white;
+}

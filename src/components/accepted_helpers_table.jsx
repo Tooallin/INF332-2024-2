@@ -4,10 +4,10 @@ const AcceptedHelpersTable = ({ acceptedHelpers, onRemove }) => (
 	<table className="table table-striped table-bordered table-hover">
 		<thead className='table__head'>
 			<tr>
-			<th>Nombre</th>
-			<th>Rol</th>
-			<th>Asignación</th>
-			<th></th>
+				<th>Nombre</th>
+				<th>Rol</th>
+				<th>Asignación</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody className='table__body'>
@@ -17,7 +17,7 @@ const AcceptedHelpersTable = ({ acceptedHelpers, onRemove }) => (
 					<td>{helper.role}</td>
 					<td>{helper.selectedOptions.join(', ') || 'Ninguna'}</td>
 					<td>
-						<button className="btn btn-danger" onClick={() => onRemove(helper)}>
+						<button className="cancel-button btn-danger" onClick={() => onRemove(helper)}>
 							Eliminar
 						</button>
 					</td>
