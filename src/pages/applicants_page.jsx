@@ -72,14 +72,8 @@ const ApplicantsPage = ({ sigla, applicantsData, nombre }) => {
 			margin: '0', 
 			flexGrow: 1, 
 			textAlign: 'center', 
-			color: '#FFC857', 
+			color: '#002A32', 
 			fontSize: '4em', 
-			textShadow: `
-				1px 1px 0 #000, -1px -1px 0 #000, 
-				-1px 1px 0 #000, 1px -1px 0 #000, 
-				1px 0 0 #000, -1px 0 0 #000, 
-				0 1px 0 #000, 0 -1px 0 #000
-			`
 			}}>
 			{nombre}
 			</h2>
