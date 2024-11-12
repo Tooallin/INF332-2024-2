@@ -315,9 +315,9 @@ const Layout = ()  => {
 			<div className='layout'>
 				<h1 className='layout__title'>
 						<img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Logo_UTFSM.png" alt="Logo" />
-						<span class="uppercase uppercase-P">P</span>lataforma
-						<span class="uppercase uppercase-U"> U</span>nificada de
-						<span class="uppercase uppercase-A"> A</span>yudantias
+						<span class="uppercase uppercase-P">P</span>lataforma de
+						<span class="uppercase uppercase-A"> A</span>yudantías
+						<span class="uppercase uppercase-U"> U</span>nificada
 				</h1>
 				<div className='layout__page'>
 					<AyudantesProvider>
